@@ -64,8 +64,6 @@ try {
 }
 ```
 
-> for more details read [the documents](https://schema.js.org)
-
 ## Authors
 
 - **Ardalan Amini** - _Core Maintainer_ - [@ardalanamini](https://github.com/ardalanamini)
