@@ -1,0 +1,24 @@
+version: 2
+
+updates:
+
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "deps(CI)"
+    reviewers:
+      - rapidom/maintainers
+
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "deps"
+      prefix-development: "deps(Dev)"
+    reviewers:
+      - rapidom/maintainers
