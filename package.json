@@ -68,9 +68,9 @@
     "build:watch": "npm run build -- --watch",
     "lint": "eslint src __tests__",
     "lint:fix": "npm run lint -- --fix",
-    "test": "jest",
+    "test": "node --expose-gc node_modules/jest/bin/jest --logHeapUsage",
     "test:coverage": "npm test -- --coverage",
-    "test:ci": "npm run test:coverage -- --ci"
+    "test:ci": "npm run test:coverage -- --ci --runInBand --no-cache --verbose"
   },
   "devDependencies": {
     "@types/jest": "^27.5.1",
