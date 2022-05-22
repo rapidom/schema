@@ -9,7 +9,6 @@
 [![npm bundle size (minified + gzip)][GZIP_BADGE]][NPM_URI]
 [![NPM Monthly Downloads][MONTHLY_DOWNLOADS_BADGE]][NPM_URI]
 [![NPM Total Downloads][TOTAL_DOWNLOADS_BADGE]][NPM_URI]
-[![Dependencies Status][DEPENDENCY_STATUS_BADGE]][DEPENDENCY_STATUS_URI]
 [![Open Issues][OPEN_ISSUES_BADGE]][OPEN_ISSUES_URI]
 [![Pull Requests][PR_BADGE]][PR_URI]
 [![License][LICENSE_BADGE]][LICENSE_URI]
@@ -99,10 +98,6 @@ This project is licensed under the MIT License - see the [LICENSE][LICENSE_URI] 
 [MONTHLY_DOWNLOADS_BADGE]: https://img.shields.io/npm/dm/@rapidom/schema.svg
 
 [TOTAL_DOWNLOADS_BADGE]: https://img.shields.io/npm/dt/@rapidom/schema.svg
-
-[DEPENDENCY_STATUS_BADGE]: https://david-dm.org/rapidom/schema.svg
-
-[DEPENDENCY_STATUS_URI]: https://david-dm.org/rapidom/schema
 
 [OPEN_ISSUES_BADGE]: https://img.shields.io/github/issues-raw/rapidom/schema.svg
 
