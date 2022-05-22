@@ -3,98 +3,86 @@ name: Release
 on:
   push:
     tags:
-      - 'v*'
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
-  build:
-    name: Test
-
-    runs-on: ubuntu-latest
-
-    env:
-      RELEASE: ${{ github.ref }}
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Use Node.js 14
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14
-
-      - name: Install packages
-        run: npm ci
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Build
-        run: npm run build
-
-      - name: Test
-        run: npm run test:ci
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          env_vars: RELEASE
-          fail_ci_if_error: true
+  test:
+    uses: ./.github/workflows/test.yml
 
   release:
     name: Create Release
 
+    concurrency: github-release
+
+    environment:
+      name: release
+      url: https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}
+
     runs-on: ubuntu-latest
 
     needs:
-      - build
+      - test
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Changelog
+        uses: ardalanamini/auto-changelog@v3
         id: changelog
-        uses: ardalanamini/auto-changelog@v1.2.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           body: |
             ${{ steps.changelog.outputs.changelog }}
+          prerelease: ${{ steps.changelog.outputs.prerelease }}
 
   publish-npm:
     name: Publish to NPM
 
+    concurrency: npm-release
+
+    environment:
+      name: npm
+      url: https://www.npmjs.com/package/@rapidom/schema
+
     runs-on: ubuntu-latest
 
     needs:
       - release
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Use Node.js 14
-        uses: actions/setup-node@v1
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
           registry-url: https://registry.npmjs.org/
 
-      - name: Install packages
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build the project
         run: npm run build
 
-      - name: Publish
+      - name: Publish to NPM
         run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-gpr:
-    name: Publish to Github
+    name: Publish to GitHub Packages
+
+    concurrency: gpr-release
+
+    environment:
+      name: gpr
+      url: https://github.com/${{ github.repository }}/packages
+
+    permissions:
+      contents: read
+      packages: write
 
     runs-on: ubuntu-latest
 
@@ -102,22 +90,22 @@ jobs:
       - release
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Use Node.js 14
-        uses: actions/setup-node@v1
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
           registry-url: https://npm.pkg.github.com/
           scope: '@rapidom'
 
-      - name: Install packages
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build the project
         run: npm run build
 
-      - name: Publish
+      - name: Publish to GitHub Packages Registry
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ github.token }}
