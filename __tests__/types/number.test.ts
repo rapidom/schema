@@ -7,7 +7,8 @@ it("should fail", () => {
 
   try {
     Schema.number().validate("some string");
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual("needs to be a valid number");
   }
@@ -25,7 +26,8 @@ describe(".port", () => {
 
     try {
       Schema.number().port().validate(100000);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual("needs to be a valid port (0 - 65535)");
     }
@@ -44,7 +46,8 @@ describe(".integer", () => {
 
     try {
       Schema.number().integer().validate(1.5);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual("needs to be an integer");
     }
@@ -55,7 +58,8 @@ describe(".integer", () => {
 
     try {
       Schema.number().integer(false).validate(1);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual("needs to be a floating point");
     }
@@ -80,7 +84,8 @@ describe(".positive", () => {
 
     try {
       Schema.number().positive().validate(-1);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual("needs to be a positive number");
     }
@@ -91,7 +96,8 @@ describe(".positive", () => {
 
     try {
       Schema.number().positive(false).validate(1);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual("needs to be a negative number");
     }
@@ -116,7 +122,8 @@ describe(".max", () => {
 
     try {
       Schema.number().max(5).validate(10);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual("needs to be less than 5");
     }
@@ -135,7 +142,8 @@ describe(".min", () => {
 
     try {
       Schema.number().min(5).validate(2);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual("needs to be greater than 5");
     }
@@ -154,7 +162,8 @@ describe(".precision", () => {
 
     try {
       Schema.number().precision(2).validate(15.854);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual(
         "needs to have at most 2 decimal places",
@@ -175,7 +184,8 @@ describe(".multiple", () => {
 
     try {
       Schema.number().multiple(3).validate(15.854);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual("needs to be multiple of 3");
     }

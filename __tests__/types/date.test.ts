@@ -7,7 +7,8 @@ it("should fail to cast boolean to date", () => {
 
   try {
     Schema.date().validate(true);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual("needs to be a valid date");
   }
@@ -83,7 +84,8 @@ describe(".max", () => {
       Schema.date()
         .max(() => max)
         .validate(now);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual(`needs to be before or same as ${max}`);
     }
@@ -118,7 +120,8 @@ describe(".min", () => {
 
     try {
       Schema.date().min(min).validate(now);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual(
         `needs to be after or same as ${new Date(min)}`,

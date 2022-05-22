@@ -7,7 +7,8 @@ it("should fail when it's required and the value is missing", () => {
 
   try {
     Schema.boolean().required().validate();
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual("needs to have a value");
   }
@@ -37,7 +38,8 @@ test("multiple validations", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       boolean1: "boolean1 needs to have a value",

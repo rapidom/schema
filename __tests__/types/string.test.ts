@@ -17,7 +17,8 @@ test(".token", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to only contain a-z, A-Z, 0-9, underscore (_)",
@@ -40,7 +41,8 @@ test(".alphanum", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to only contain a-z, A-Z, 0-9",
@@ -63,7 +65,8 @@ test(".numeral", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to only contain numbers",
@@ -88,7 +91,8 @@ test(".ip", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to be a valid ip address",
@@ -111,7 +115,8 @@ test(".ip(4)", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to be a valid ipv4 address",
@@ -134,7 +139,8 @@ test(".ip(6)", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to be a valid ipv6 address",
@@ -157,7 +163,8 @@ test(".email", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to be a valid email address",
@@ -180,7 +187,8 @@ test(".creditCard", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to be a valid credit-card",
@@ -203,7 +211,8 @@ test(".min", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to contain at least 5 character(s)",
@@ -226,7 +235,8 @@ test(".max", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to contain at most 5 character(s)",
@@ -249,7 +259,8 @@ test(".length", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to contain exactly 5 character(s)",
@@ -272,7 +283,8 @@ test(".regex", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to match /\\d/",
@@ -295,7 +307,8 @@ test(".enum", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to be one of [\"john\",\"doe\"]",

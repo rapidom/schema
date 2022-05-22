@@ -20,7 +20,8 @@ test(".keys", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: {
@@ -46,7 +47,8 @@ test(".length", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to contain exactly 1 key(s)",
@@ -67,7 +69,8 @@ test(".max", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to contain at most 1 key(s)",
@@ -88,7 +91,8 @@ test(".min", () => {
 
   try {
     Schema.object().keys(schema).validate(value);
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     expect(error).toBeInstanceOf(SchemaError);
     expect(error.details).toEqual({
       foo: "foo needs to contain at least 1 key(s)",

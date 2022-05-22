@@ -18,7 +18,8 @@ describe(".length", () => {
 
     try {
       Schema.object().keys(schema).validate(value);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual({
         foo: "foo needs to contain exactly 1 item(s)",
@@ -59,7 +60,8 @@ describe(".max", () => {
 
     try {
       Schema.object().keys(schema).validate(value);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual({
         foo: "foo needs to contain at most 1 item(s)",
@@ -100,7 +102,8 @@ describe(".min", () => {
 
     try {
       Schema.object().keys(schema).validate(value);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual({
         foo: "foo needs to contain at least 1 item(s)",
@@ -141,7 +144,8 @@ describe(".items", () => {
 
     try {
       Schema.object().keys(schema).validate(value);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual({
         bar: {
@@ -185,7 +189,8 @@ describe("complex", () => {
 
     try {
       Schema.object().keys(schema).validate(value);
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       expect(error).toBeInstanceOf(SchemaError);
       expect(error.details).toEqual({
         array1: "array1 needs to be an array",
